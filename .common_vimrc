@@ -1,0 +1,313 @@
+execute pathogen#infect()
+
+set nocompatible
+set nomodeline
+set ai
+set ic
+set smartcase
+set hidden
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set backspace=indent,eol,start
+set ruler               " show the cursor position all the time
+set showcmd             " display incomplete commands
+set incsearch           " do incremental searching
+set showmatch
+set matchtime=3
+filetype plugin indent on
+
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_switch_buffer = 0
+let g:ctrlp_map = '<leader>t'
+let s:default_ctrlp_user_command = ''
+let s:git_ctrlp_user_command = ['.git', 'cd %s && git ls-files']
+let g:ctrlp_user_command = s:git_ctrlp_user_command
+
+
+let g:AutoPairsMultilineClose = 0
+let g:AutoPairsCenterLine = 0
+let g:AutoPairsFlyMode = 0
+
+"the default mappings for this interfered with using e.g. <M-(> to insert a single (
+let g:AutoPairsMoveCharacter = ''
+
+
+let g:BufKillCreateMappings = 0
+let NERDSpaceDelims=1
+let NERDTreeMapHelp='<f1>'
+let html_no_rendering=1
+let g:pdv_template_dir = $HOME . '/pdv_templates'
+let g:Brace_column_limit = 101
+let g:argwrap_tail_comma_braces = '[{'
+
+"set nu
+set foldcolumn=1
+set guifont=Menlo:h14
+set linespace=4
+set ffs=unix,mac,dos
+set fo=crql
+set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
+set nowrap
+set listchars+=precedes:<,extends:>
+set formatoptions-=o
+set wildmode=longest,list,full
+
+au VimEnter * NoMatchParen
+au VimEnter * let g:phpcd_auto_restart = 1
+
+" au BufNewFile,BufRead *         if &ft == 'javascript' | set noexpandtab | else | set expandtab | endif
+au BufWinEnter *.php            set mps-=<:>
+" Workaround for Phpcp breaking when switching between files in different difectories.
+" I assume this causes the Phpcd ftplugin to be reloaded.
+" au BufEnter *.php set filetype=php
+
+" Use set filetype=, rather than setfiletype, to override default filetype detection.
+au BufNewFile,BufRead *.html,*.htm set filetype=html.twig
+" au BufWinEnter *.html,*.htm set filetype=html.twig
+
+" This caused problems with indenting.
+" au Filetype htmldjango let b:AutoPairs = {'`': '`', '"': '"', '{': '}', '''': '''', '(': ')', '[': ']', '<': '>'}
+
+au ColorScheme * highlight ExtraWhitespace guibg=magenta1
+highlight ExtraWhitespace guibg=magenta1
+com White match ExtraWhitespace /\s\+$/
+
+" Don't know if this applies to Neovim. Move to .vimrc?
+if has("gui_running")
+    set macmeta
+    "set fullscreen
+    set guioptions-=T
+    set guioptions-=r
+    set guioptions-=L
+endif
+
+let s:light_cursor_values = 'guibg=gray80 guifg=fg'
+let s:dark_cursor_values = 'guibg=gray50 guifg=white'
+let s:red_cursor_values = 'guibg=red guifg=white'
+let g:Brace_cursor_values = s:light_cursor_values
+
+" Used to initialize colors in ~/.vim/colors/brace.vim .
+" If colors are initialized in this file, they get overridden somewhere.
+let g:Brace_initial_cursor_values = s:light_cursor_values
+let g:Brace_colorcolumn_values = 'guifg=red guibg=bg'
+
+com Lightcursor call Change_cursor(s:light_cursor_values)
+com Darkcursor call Change_cursor(s:dark_cursor_values)
+com Redcursor call Change_cursor(s:red_cursor_values)
+
+com Scratch enew|set buftype=nofile|setlocal noswapfile|file scratch
+com Tsplit tab split
+com Tt call Toggle_tab_line()
+com -range Sparate <line1>,<line2>s/\s/\r/g
+com -nargs=1 -complete=help Honly help <args> |only
+com -nargs=1 -complete=help Hv vert rightb help <args>
+" com Wexplore exec "Texplore "getcwd()
+com Ntf NERDTreeFind
+com Ntg NERDTreeToggle
+
+":[range]Source    Execute text lines as ex commands.
+"           Handles |line-continuation|.
+command -bar -range Source silent <line1>,<line2>yank z | let @z = substitute(@z, '\n\s*\\', '', 'g') | @z
+
+com ChangeColumnToFixup exec "normal! \<c-v>}kecf\<esc>"
+
+let s:cursor_is_hidden = 0
+function Toggle_cursor()
+    if s:cursor_is_hidden
+        Showcursor
+        let s:cursor_is_hidden = 0
+    else
+        Hidecursor
+        let s:cursor_is_hidden = 1
+    endif
+endfunction
+
+function Change_cursor(values)
+    let g:Brace_cursor_values = a:values
+    Showcursor
+    let s:cursor_is_hidden = 0
+endfunction
+
+let s:match_paren_enabled = 0
+function Toggle_match_paren()
+    "No/DoMatchParen change the current window, so save it and later restore it
+    let return_to_window = winnr()
+    if s:match_paren_enabled
+        NoMatchParen
+        let s:match_paren_enabled = 0
+    else
+        DoMatchParen
+        let s:match_paren_enabled = 1
+    endif
+    execute return_to_window . "wincmd w"
+endfunction
+
+function Toggle_tab_line()
+    redir => output
+    silent set showtabline
+    redir END
+    let output_list = split(output, '=')
+    if get(output_list, 1)
+        set showtabline=0
+    else
+        set showtabline=1
+    endif
+endfunction
+
+function Enable_colorcolumn()
+    hi ColorColumn guibg=pink
+    let &colorcolumn = g:Brace_column_limit
+    redraw
+    sleep 350m
+    exec 'hi ColorColumn ' g:Brace_colorcolumn_values
+endfunction
+
+function Toggle_ctrlp_git_impl()
+    if type(g:ctrlp_user_command) == v:t_list
+        let g:ctrlp_user_command = s:default_ctrlp_user_command
+        echo "git mode disabled"
+    else
+        let g:ctrlp_user_command = s:git_ctrlp_user_command
+        echo "git mode enabled"
+    endif
+    CtrlPClearCache
+endfunction
+
+command ToggleCtrlPGit call Toggle_ctrlp_git_impl()
+
+" http://inlehmansterms.net/2014/09/04/sane-vim-working-directories/
+" set working directory to git project root
+" or directory of current file if not git project
+function Set_project_root()
+    " default to the current file's directory
+    cd %:p:h
+    let git_dir = system("git rev-parse --show-toplevel")
+    " See if the command output starts with 'fatal' (if it does, not in a git repo)
+    let is_not_git_dir = matchstr(git_dir, '^fatal:.*')
+    " if git project, change local directory to git project root
+    if empty(is_not_git_dir)
+        cd `=git_dir`
+        echo "changed to git project root"
+    else
+        echo "not a git project; changed to current file directory"
+    endif
+endfunction
+
+command Cdr call Set_project_root()
+
+function Ggrep_impl(arg)
+    let grepprg = &grepprg
+    let &grepprg = "git --no-pager grep -i -n --no-color"
+    exec "grep! " a:arg " | cwindow 20"
+    let &grepprg = grepprg
+endfunction
+
+com -nargs=1 Ggrep call Ggrep_impl(<q-args>)
+
+function SetCurrentLine(text)
+    call setline('.', a:text)
+endfunction
+
+function SplitMethodChain()
+    let arrow = '->'
+    let parts = split(getline('.'), arrow)
+    call SetCurrentLine(join(parts[0:1], arrow))
+    for part in parts[2:]
+        normal o
+        call SetCurrentLine(arrow . part)
+        normal ==
+    endfor
+endfunction
+
+com SplitMethodChain call SplitMethodChain()
+
+function Join() range
+    let start = a:firstline
+    let end = a:lastline
+    if start == end
+        let end += 1
+    endif
+    let toAppend = []
+    let second = start + 1
+    for i in range(second, end)
+        let trimmed = substitute(getline(i), '^\s*', '', '')
+        call add(toAppend, trimmed)
+    endfor
+    exec second','end 'delete'
+    call setline(start, getline(start) . join(toAppend, ''))
+endfunction
+
+com -range Join <line1>,<line2>call Join()
+
+let s:markedWindows = {}
+
+" could use getchar() instead of command arg
+function MarkWindow(mark)
+    let s:markedWindows[a:mark] = win_getid()
+endfunction
+
+function GoToWindow(mark)
+    call win_gotoid(s:markedWindows[a:mark])
+endfunction
+
+com -nargs=1 Mwindow call MarkWindow('<args>')
+com -nargs=1 Gwindow call GoToWindow('<args>')
+
+function MoveSectionToTop()
+    normal! mz
+    normal [[
+    normal! {
+    normal! zt
+    normal! `z
+endfunction
+
+function s:windowFillColumn()
+    let initial = winnr()
+    wincmd j
+    if winnr() != initial
+        clo
+        return
+    endif
+    wincmd k
+    if winnr() != initial
+        clo
+    endif
+endfunction
+
+com WindowFillColumn call s:windowFillColumn()
+
+inoremap <C-F> <Right>
+inoremap <C-A> <Esc>I
+inoremap <C-E> <Esc>A
+inoremap ;; <Esc>A;<Esc>
+" inoremap {; {};<Left><Left>
+" inoremap {, {},<Left><Left>
+" inoremap (; ();<Left><Left>
+nnoremap <silent> <C-H> :call Toggle_cursor() <CR>
+nnoremap <C-p> :call pdv#DocumentCurrentLine()<CR>
+
+nnoremap <SPACE> <Nop>
+vnoremap <SPACE> <Nop>
+let mapleader = " "
+nnoremap z. zz
+nnoremap <leader>k :BD<CR>
+nnoremap <silent><leader>l :Lightcursor <CR>
+nnoremap <silent><leader>d :Darkcursor <CR>
+nnoremap <silent><leader>f :call MoveSectionToTop() <CR>
+nnoremap <silent><leader>r :Redcursor <CR>
+nnoremap <silent><leader>m :call Toggle_match_paren() <CR>
+nnoremap <silent><leader>on :call Enable_colorcolumn() <CR>
+nnoremap <silent><leader>oo :set colorcolumn= <CR>
+nnoremap <silent><leader>s :set invhlsearch <CR>
+nnoremap <leader>c ^"*y$
+nnoremap <leader>w :w <CR>
+nnoremap <leader>e mE <C-W>w `E
+nnoremap <leader>b :CtrlPBuffer<CR>
+
+" open file from quickfix, then go back to quickfix
+nnoremap <leader>g <CR> <C-W>p
+
+nmap <leader>n <plug>NERDCommenterToggle
+vmap <leader>n <plug>NERDCommenterToggle
