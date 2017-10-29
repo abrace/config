@@ -279,10 +279,12 @@ endfunction
 com WindowFillColumn call s:windowFillColumn()
 
 function! s:functionSource()
+    normal! mz
     normal [[
     normal! V
     call search('^endfunction')
     '<,'>Source
+    normal `z
 endfunction
 
 com FunctionSource call s:functionSource()
