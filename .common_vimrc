@@ -278,6 +278,15 @@ endfunction
 
 com WindowFillColumn call s:windowFillColumn()
 
+function! s:functionSource()
+    normal [[
+    normal! V
+    call search('^endfunction')
+    '<,'>Source
+endfunction
+
+com FunctionSource call s:functionSource()
+
 inoremap <C-F> <Right>
 inoremap <C-A> <Esc>I
 inoremap <C-E> <Esc>A
