@@ -279,12 +279,13 @@ endfunction
 com WindowFillColumn call s:windowFillColumn()
 
 function! s:functionSource()
-    normal! mz
+    let initialCursorPos = getpos('.')
     normal [[
-    normal! V
+    let functionStart = line('.')
     call search('^endfunction')
-    '<,'>Source
-    normal `z
+    let functionEnd = line('.')
+    exec functionStart . ',' . functionEnd . 'Source'
+    call setpos('.', initialCursorPos)
 endfunction
 
 com FunctionSource call s:functionSource()
