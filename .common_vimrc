@@ -313,6 +313,7 @@ nnoremap <silent><leader>on :call Enable_colorcolumn() <CR>
 nnoremap <silent><leader>oo :set colorcolumn= <CR>
 nnoremap <silent><leader>s :set invhlsearch <CR>
 nnoremap <silent><leader>y "+
+vnoremap <silent><leader>y "+
 nnoremap <leader>c ^"*y$
 nnoremap <leader>w :w <CR>
 nnoremap <leader>e mE <C-W>w `E
