@@ -312,6 +312,8 @@ nnoremap <silent><leader>r :Redcursor <CR>
 nnoremap <silent><leader>m :call Toggle_match_paren() <CR>
 nnoremap <silent><leader>on :call Enable_colorcolumn() <CR>
 nnoremap <silent><leader>oo :set colorcolumn= <CR>
+nnoremap <silent><leader>p p`[v`]=
+nnoremap <silent><leader>P P`[v`]=
 nnoremap <silent><leader>s :set invhlsearch <CR>
 nnoremap <silent><leader>y "+
 vnoremap <silent><leader>y "+
