@@ -281,10 +281,10 @@ com WindowFillColumn call s:windowFillColumn()
 function! s:functionSource()
     let initialCursorPos = getpos('.')
     normal [[
-    let functionStart = line('.')
+    mark y
     call search('^endfunction')
-    let functionEnd = line('.')
-    exec functionStart . ',' . functionEnd . 'Source'
+    mark z
+    'y,'z Source
     call setpos('.', initialCursorPos)
 endfunction
 
