@@ -11,6 +11,7 @@ alias gln='git log --name-status'
 alias cl='clear'
 alias gff='git merge --ff-only'
 alias gdc='git diff --cached'
+alias gri='git rebase -i'
 alias ncopy="tr -d '\n'|pbcopy"
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 alias dockenv='eval $(docker-machine env default)'
