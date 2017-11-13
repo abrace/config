@@ -1,5 +1,7 @@
 source ~/.common_vimrc
 
+syntax enable
+
 set guicursor=a:blinkon0-Cursor,i-ci:blinkon0-ver25-InsertCursor
 
 com Hidecursor highlight Cursor guifg=NONE guibg=NONE
