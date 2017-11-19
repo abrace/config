@@ -55,7 +55,7 @@ set formatoptions-=o
 set wildmode=longest,list,full
 
 au VimEnter * NoMatchParen
-au VimEnter * let g:phpcd_auto_restart = 1
+let g:phpcd_auto_restart = 1
 
 " au BufNewFile,BufRead *         if &ft == 'javascript' | set noexpandtab | else | set expandtab | endif
 au BufWinEnter *.php            set mps-=<:>
