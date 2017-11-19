@@ -59,9 +59,6 @@ let g:phpcd_auto_restart = 1
 
 " au BufNewFile,BufRead *         if &ft == 'javascript' | set noexpandtab | else | set expandtab | endif
 au BufWinEnter *.php            set mps-=<:>
-" Workaround for Phpcp breaking when switching between files in different difectories.
-" I assume this causes the Phpcd ftplugin to be reloaded.
-" au BufEnter *.php set filetype=php
 
 " Use set filetype=, rather than setfiletype, to override default filetype detection.
 au BufNewFile,BufRead *.html,*.htm set filetype=html.twig
