@@ -57,7 +57,7 @@ set wildmode=longest,list,full
 au VimEnter * NoMatchParen
 let g:phpcd_auto_restart = 1
 
-" au BufNewFile,BufRead *         if &ft == 'javascript' | set noexpandtab | else | set expandtab | endif
+au BufNewFile,BufRead * call s:projectSetup()
 au BufWinEnter *.php            set mps-=<:>
 
 " Use set filetype=, rather than setfiletype, to override default filetype detection.
@@ -109,6 +109,14 @@ com Ntg NERDTreeToggle
 command -bar -range Source silent <line1>,<line2>yank z | let @z = substitute(@z, '\n\s*\\', '', 'g') | @z
 
 com ChangeColumnToFixup exec "normal! \<c-v>}kecf\<esc>"
+
+function s:projectSetup()
+    if &filetype == 'vim'
+        set noexpandtab
+    else
+        set expandtab
+    endif
+endfunction
 
 let s:cursor_is_hidden = 0
 function Toggle_cursor()
