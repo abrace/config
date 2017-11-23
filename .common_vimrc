@@ -111,7 +111,7 @@ command -bar -range Source silent <line1>,<line2>yank z | let @z = substitute(@z
 com ChangeColumnToFixup exec "normal! \<c-v>}kecf\<esc>"
 
 function! s:projectSetup()
-    if &filetype ==# 'vim'
+    if expand('%:p') =~ '/.vim/bundle/phpcd.vim' && &filetype ==# 'vim'
         set noexpandtab
     else
         set expandtab
