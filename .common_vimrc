@@ -109,6 +109,7 @@ com Ntg NERDTreeToggle
 command -bar -range Source silent <line1>,<line2>yank z | let @z = substitute(@z, '\n\s*\\', '', 'g') | @z
 
 com ChangeColumnToFixup exec "normal! \<c-v>}kecf\<esc>"
+com YankFilename let @* = expand("%")
 
 function! s:projectSetup()
     if expand('%:p') =~ '/.vim/bundle/phpcd.vim' && &filetype ==# 'vim'
