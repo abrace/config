@@ -137,3 +137,5 @@
 ;; (command-execute 'split-window-right)
 ;; (command-execute 'other-window)
 ;; (command-execute 'slime)
+
+(command-execute 'toggle-frame-maximized)
