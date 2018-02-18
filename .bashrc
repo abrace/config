@@ -1,6 +1,5 @@
 source ~/git-completion.bash
 
-set -o vi
 alias ll='ls -l'
 alias l1='ls -1'
 alias gs='git status'
