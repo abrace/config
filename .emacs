@@ -26,6 +26,7 @@
      (speedbar-file-key-map)
      (speedbar-buffers-key-map))))
  '(global-paren-face-mode t)
+ '(inhibit-startup-screen t)
  '(package-selected-packages (quote (mic-paren evil-paredit paredit paren-face evil)))
  '(paren-face-modes
    (quote
@@ -129,8 +130,10 @@
 
 ;(add-function :around show-paren-data-function #'my-show-paren-any)
 
-(command-execute 'split-window-right)
-(command-execute 'other-window)
-(command-execute 'slime)
-;; This puts Slime in the left window.
+(add-to-list 'slime-contribs 'slime-cl-indent)
+(command-execute 'slime-setup) ; needed for slime-cl-indent to take effect
+
+;; SLIME repl gets hidden now that slime-setup is executed.
+;; (command-execute 'split-window-right)
 ;; (command-execute 'other-window)
+;; (command-execute 'slime)
