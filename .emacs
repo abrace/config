@@ -122,6 +122,8 @@
     (slime-compile-and-load-file '(4))))
 
 
+(define-key slime-repl-mode-map (kbd "C-c d") 'slime-repl-delete-current-input)
+
 ;; http://stackoverflow.com/a/25649189
 ; (defun my-show-paren-any (orig-fun)
 ;   (or (funcall orig-fun)
