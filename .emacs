@@ -124,14 +124,6 @@
 
 (define-key slime-repl-mode-map (kbd "C-c d") 'slime-repl-delete-current-input)
 
-;; http://stackoverflow.com/a/25649189
-; (defun my-show-paren-any (orig-fun)
-;   (or (funcall orig-fun)
-;       (if (looking-at "\\s)")
-;           (save-excursion (forward-char 1) (funcall orig-fun)))))
-
-;(add-function :around show-paren-data-function #'my-show-paren-any)
-
 (add-to-list 'slime-contribs 'slime-cl-indent)
 (command-execute 'slime-setup) ; needed for slime-cl-indent to take effect
 
