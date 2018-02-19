@@ -76,25 +76,7 @@
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 ;; (evil-set-initial-state 'slime-repl-mode 'emacs)
 
-
-;;; Parenthesis Highlighting
-;;; mic-paren has the advantage of not highlighting the open-paren under the cursor.
-;;; But in Evil Mode, mic-paren doesn't highlight the matching open-paren when the
-;;; cursor is on a close-paren at the end of a line.
-
 (global-set-key (kbd "C-c m") 'show-paren-mode)
-;; (require 'mic-paren) ; loading
-;; (paren-activate)     ; activating
-;; (setq custom-mic-paren-on t)
-;; (global-set-key (kbd "C-c m")
-;;                (lambda ()
-;;                  "Toggle mic-paren."
-;;                  (interactive)
-;;                  (if custom-mic-paren-on
-;;                      (paren-deactivate)
-;;                    (paren-activate))
-;;                  (setq custom-mic-paren-on (not custom-mic-paren-on))))
-
 
 (defun toggle-cursor ()
   (interactive)
