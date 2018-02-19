@@ -27,7 +27,7 @@
      (speedbar-buffers-key-map))))
  '(global-paren-face-mode t)
  '(inhibit-startup-screen t)
- '(package-selected-packages (quote (mic-paren evil-paredit paredit paren-face evil)))
+ '(package-selected-packages (quote (evil-paredit paredit paren-face evil)))
  '(paren-face-modes
    (quote
     (lisp-mode emacs-lisp-mode lisp-interaction-mode ielm-mode scheme-mode inferior-scheme-mode clojure-mode cider-repl-mode nrepl-mode arc-mode inferior-arc-mode slime-repl-mode)))
