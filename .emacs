@@ -11,6 +11,8 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
+ '(evil-ex-search-highlight-all nil)
+ '(evil-ex-search-persistent-highlight nil)
  '(evil-overriding-maps
    (quote
     ((Buffer-menu-mode-map)
@@ -25,6 +27,7 @@
      (slime-mode-map)
      (speedbar-file-key-map)
      (speedbar-buffers-key-map))))
+ '(evil-search-module (quote evil-search))
  '(global-paren-face-mode t)
  '(inhibit-startup-screen t)
  '(package-selected-packages (quote (evil-paredit paredit paren-face evil)))
