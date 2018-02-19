@@ -77,7 +77,10 @@
 (evil-mode 1)
 (define-key evil-insert-state-map (kbd "C-a") 'move-beginning-of-line)
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
-;; (evil-set-initial-state 'slime-repl-mode 'emacs)
+
+;; Make x act on selections.
+(define-key evil-visual-state-map "x" 'evil-paredit-delete)
+
 
 (global-set-key (kbd "C-c m") 'show-paren-mode)
 
