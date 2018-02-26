@@ -11,6 +11,11 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(blink-cursor-mode nil)
+ '(display-buffer-alist
+   (quote
+    (("\\\\*Completions\\\\*"
+      (display-buffer-pop-up-window display-buffer-use-some-window)
+      (inhibit-same-window . t)))))
  '(evil-ex-search-highlight-all nil)
  '(evil-ex-search-persistent-highlight nil)
  '(evil-overriding-maps
@@ -35,6 +40,7 @@
    (quote
     (lisp-mode emacs-lisp-mode lisp-interaction-mode ielm-mode scheme-mode inferior-scheme-mode clojure-mode cider-repl-mode nrepl-mode arc-mode inferior-arc-mode slime-repl-mode)))
  '(show-paren-mode t)
+ '(tab-always-indent (quote complete))
  '(tool-bar-mode nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
