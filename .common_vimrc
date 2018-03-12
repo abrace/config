@@ -314,6 +314,7 @@ nnoremap <leader>k :BD<CR>
 nnoremap <silent><leader>l :Lightcursor <CR>
 nnoremap <silent><leader>d :Darkcursor <CR>
 nnoremap <silent><leader>f :call MoveSectionToTop() <CR>
+nnoremap <silent><leader>h :checktime <CR>
 nnoremap <silent><leader>r :Redcursor <CR>
 nnoremap <silent><leader>m :call Toggle_match_paren() <CR>
 nnoremap <silent><leader>on :call Enable_colorcolumn() <CR>
