@@ -42,8 +42,6 @@ function dockbash()
     docker exec -t -i "$1" bash
 }
 
-export VISUAL=~/scripts/vim
-export EDITOR="$VISUAL"
 export PS1="\[\e[34;50m\]\h:\W \u\$\[\e[30;50m\] "
 
 export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
