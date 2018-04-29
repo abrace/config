@@ -75,8 +75,10 @@
 (define-key evil-insert-state-map (kbd "C-e") 'move-end-of-line)
 
 ;; Make x act on selections.
-;(define-key evil-visual-state-map "x" 'evil-paredit-delete)
+(define-key evil-visual-state-map "x" 'evil-paredit-delete)
 
+;; make cw respect evil-want-change-word-to-end
+(add-to-list 'evil-change-commands #'evil-paredit-change)
 
 (global-set-key (kbd "C-c m") 'show-paren-mode)
 
