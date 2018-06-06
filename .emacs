@@ -125,6 +125,13 @@
 
 (define-key slime-repl-mode-map (kbd "C-c d") 'slime-repl-delete-current-input)
 
+(eval-after-load 'slime
+  '(progn
+     (define-key slime-mode-indirect-map (kbd "M-?") nil)))
+(eval-after-load 'paredit
+  '(progn
+     (define-key paredit-mode-map (kbd "M-?") 'paredit-convolute-sexp)))
+
 (add-to-list 'slime-contribs 'slime-cl-indent)
 (command-execute 'slime-setup) ; needed for slime-cl-indent to take effect
 
