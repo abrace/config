@@ -337,6 +337,7 @@ nnoremap <leader>c ^"*y$
 nnoremap <leader>w :w <CR>
 nnoremap <leader>e :call OpenInOtherWindow() <CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
+nnoremap <leader>i <C-W>H <C-W>p
 
 " open file from quickfix, then go back to quickfix
 nnoremap <leader>g <CR> <C-W>p
