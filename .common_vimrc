@@ -296,6 +296,15 @@ endfunction
 
 com FunctionSource call s:functionSource()
 
+function OpenInOtherWindow()
+    let initialCursorPos = getpos('.')
+    let bufferNumber = bufnr('%')
+    wincmd w
+    exec "b " bufferNumber
+    call setpos('.', initialCursorPos)
+    normal zz
+endfunction
+
 inoremap <C-F> <Right>
 inoremap <C-A> <Esc>I
 inoremap <C-E> <Esc>A
@@ -326,7 +335,7 @@ nnoremap <silent><leader>y "+
 vnoremap <silent><leader>y "+
 nnoremap <leader>c ^"*y$
 nnoremap <leader>w :w <CR>
-nnoremap <leader>e mE <C-W>w `E
+nnoremap <leader>e :call OpenInOtherWindow() <CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 
 " open file from quickfix, then go back to quickfix
