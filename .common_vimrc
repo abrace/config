@@ -305,6 +305,11 @@ function OpenInOtherWindow()
     normal zz
 endfunction
 
+function FlipWindowLeft()
+    wincmd H
+    wincmd l
+endfunction
+
 inoremap <C-F> <Right>
 inoremap <C-A> <Esc>I
 inoremap <C-E> <Esc>A
@@ -337,7 +342,7 @@ nnoremap <leader>c ^"*y$
 nnoremap <leader>w :w <CR>
 nnoremap <leader>e :call OpenInOtherWindow() <CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
-nnoremap <leader>i <C-W>H <C-W>p
+nnoremap <silent><leader>i :call FlipWindowLeft() <CR>
 
 " open file from quickfix, then go back to quickfix
 nnoremap <leader>g <CR> <C-W>p
