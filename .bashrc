@@ -13,7 +13,6 @@ alias gdc='git diff --cached'
 alias gri='git rebase -i'
 alias ncopy="tr -d '\n'|pbcopy"
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
-alias dockenv='eval $(docker-machine env default)'
 function findweb() { find . -type f -a \( -name "*.inc" -o -name "*.php" -o -name "*.html" -o -name "*.js" \)|grepfiles "$1"; }
 
 function findphp()
@@ -46,6 +45,3 @@ export PS1="\[\e[34;50m\]\h:\W \u\$\[\e[30;50m\] "
 
 export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
 export PATH="~/scripts:$PATH"
-
-
-dockenv
