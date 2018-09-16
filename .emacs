@@ -142,17 +142,16 @@
 (defun acb-convert-if-to-cond ()
   (interactive)
   (save-excursion
-    (let ((if-location (acb-find-if)))
-      (when if-location
-        (acb-replace-symbol-with-cond)
-        (acb-wrap-forms 2) ; test and then
-        (forward-sexp)
-        (acb-wrap-forms 1) ; else
-        (right-char)
-        (insert "t\n")
-        (mark-defun)
-        (indent-region (region-beginning) (region-end))
-        (deactivate-mark)))))
+    (when (acb-find-if)
+      (acb-replace-symbol-with-cond)
+      (acb-wrap-forms 2) ; test and then
+      (forward-sexp)
+      (acb-wrap-forms 1) ; else
+      (right-char)
+      (insert "t\n")
+      (mark-defun)
+      (indent-region (region-beginning) (region-end))
+      (deactivate-mark))))
 
 (defun acb-find-if ()
   (right-char) ; could be on starting paren
