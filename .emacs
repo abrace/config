@@ -131,6 +131,9 @@
 (eval-after-load 'paredit
   '(progn
      (define-key paredit-mode-map (kbd "M-?") 'paredit-convolute-sexp)))
+(eval-after-load 'evil
+  '(progn
+     (define-key evil-normal-state-map (kbd "M-.") nil)))
 
 (add-to-list 'slime-contribs 'slime-cl-indent)
 (command-execute 'slime-setup) ; needed for slime-cl-indent to take effect
