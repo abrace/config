@@ -10,6 +10,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(auto-save-file-name-transforms
+   (quote
+    (("\\`/[^/]*:\\([^/]*/\\)*\\([^/]*\\)\\'" "/var/folders/cq/b97mkllj0z58tzn3lk43ch3000010f/T/\\2" t)
+     (".*" "~/.emacs-tmp/" t))))
+ '(backup-directory-alist (quote (("." . "~/.emacs-tmp"))))
  '(blink-cursor-mode nil)
  '(display-buffer-alist
    (quote
