@@ -135,6 +135,43 @@
 (add-to-list 'slime-contribs 'slime-cl-indent)
 (command-execute 'slime-setup) ; needed for slime-cl-indent to take effect
 
+
+;;; acb-convert-if-to-cond
+;;; assumes only one else form, Common Lisp-style
+
+(defun acb-convert-if-to-cond ()
+  (interactive)
+  (save-excursion
+    (let ((if-location (acb-find-if)))
+      (when if-location
+        (acb-replace-symbol-with-cond)
+        (acb-wrap-forms 2) ; test and then
+        (forward-sexp)
+        (acb-wrap-forms 1) ; else
+        (right-char)
+        (insert "t\n")
+        (mark-defun)
+        (indent-region (region-beginning) (region-end))
+        (deactivate-mark)))))
+
+(defun acb-find-if ()
+  (right-char) ; could be on starting paren
+  (if (string= (thing-at-point 'symbol) "if")
+      (point)
+    (search-backward "if")))
+
+(defun acb-replace-symbol-with-cond ()
+  (let ((bounds (bounds-of-thing-at-point 'symbol)))
+    (delete-region (car bounds) (cdr bounds))
+    (insert "cond")))
+
+(defun acb-wrap-forms (n)
+  (skip-chars-forward " \t\n")
+  (mark-sexp n)
+  (paredit-wrap-round)
+  (left-char))
+
+
 ;; SLIME repl gets hidden now that slime-setup is executed.
 ;; (command-execute 'split-window-right)
 ;; (command-execute 'other-window)
