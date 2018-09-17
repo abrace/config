@@ -67,6 +67,13 @@
  '(parenthesis ((t (:foreground "gray40"))))
  '(show-paren-match ((t (:background "light goldenrod")))))
 
+(font-lock-add-keywords
+ 'lisp-mode
+ '(("(\\(check-\\(\\s_\\|\\w\\)*\\)" 1 font-lock-keyword-face)
+   ("(\\(assert-\\(\\s_\\|\\w\\)*\\)" 1 font-lock-keyword-face)
+   ("(\\(a\\(?:\\(?:bo\\|sse\\)rt\\)\\|c\\(?:error\\|heck-type\\)\\|error\\|signal\\|warn\\)\\_>"
+    (1 font-lock-keyword-face))))
+
 (setq-default line-spacing 4)
 (setq-default indent-tabs-mode nil)
 ;; (menu-bar-mode -1)
