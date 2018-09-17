@@ -27,6 +27,7 @@
  '(evil-ex-search-highlight-all nil)
  '(evil-ex-search-persistent-highlight nil)
  '(evil-mode t)
+ '(evil-move-beyond-eol t)
  '(evil-overriding-maps
    (quote
     ((Buffer-menu-mode-map)
