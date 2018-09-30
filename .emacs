@@ -2,7 +2,7 @@
 (load (expand-file-name "~/quicklisp/slime-helper.el"))
 
 (require 'package)
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (custom-set-variables
