@@ -43,5 +43,5 @@ function dockbash()
 
 export PS1="\[\e[34;50m\]\h:\W \u\$\[\e[30;50m\] "
 
-export PATH="$(brew --prefix homebrew/php/php71)/bin:$PATH"
+export PATH="$(brew --prefix php)/bin:$PATH"
 export PATH="~/scripts:$PATH"
