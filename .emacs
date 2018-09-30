@@ -16,6 +16,7 @@
      (".*" "~/.emacs-tmp/" t))))
  '(backup-directory-alist (quote (("." . "~/.emacs-tmp"))))
  '(blink-cursor-mode nil)
+ '(column-number-mode t)
  '(display-buffer-alist
    (quote
     (("\\\\*Completions\\\\*"
