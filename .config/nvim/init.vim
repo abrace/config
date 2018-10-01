@@ -9,6 +9,7 @@ set wildignorecase
 let &colorcolumn = g:Brace_column_limit
 colorscheme brace_nvim
 
+autocmd TermOpen * startinsert
 
 function Initcursor()
     set guicursor=a:blinkon0-block-Cursor,i-ci:blinkon0-ver25-InsertCursor
