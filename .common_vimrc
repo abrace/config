@@ -338,7 +338,7 @@ nnoremap <silent><leader>P P`[v`]=
 nnoremap <silent><leader>s :set invhlsearch <CR>
 nnoremap <silent><leader>y "+
 vnoremap <silent><leader>y "+
-nnoremap <leader>c ^"*y$
+nnoremap <leader>cd ^"*y$
 nnoremap <leader>w :w <CR>
 nnoremap <leader>e :call OpenInOtherWindow() <CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
