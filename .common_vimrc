@@ -341,7 +341,7 @@ nnoremap <silent><leader>y "+
 vnoremap <silent><leader>y "+
 nnoremap <leader>cd ^"*y$
 nnoremap <leader>w :w <CR>
-nnoremap <leader>e :call OpenInOtherWindow() <CR>
+nnoremap <silent><leader>e :call OpenInOtherWindow() <CR>
 nnoremap <leader>b :CtrlPBuffer<CR>
 nnoremap <silent><leader>i :call FlipWindowLeft() <CR>
 
