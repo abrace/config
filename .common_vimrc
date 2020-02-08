@@ -350,3 +350,8 @@ nnoremap <leader>g <CR> <C-W>p
 
 nmap <leader>n <plug>NERDCommenterToggle
 vmap <leader>n <plug>NERDCommenterToggle
+
+" Output the current syntax group
+nnoremap <leader>a :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<cr>
