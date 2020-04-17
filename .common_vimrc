@@ -163,9 +163,15 @@ function Toggle_tab_line()
 endfunction
 
 function Enable_colorcolumn()
+    " Place a vertical line on Brace_column_limit.
     hi ColorColumn guibg=pink
     let &colorcolumn = g:Brace_column_limit
     redraw
+    return
+
+    " Pause, then hide the vertical line and highlight characters on Brace_column_limit.
+    " Currently disabled because other highlighting started overriding the highlighting this tries
+    " to do.
     sleep 350m
     exec 'hi ColorColumn ' g:Brace_colorcolumn_values
 endfunction
