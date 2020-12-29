@@ -325,7 +325,6 @@ inoremap ;; <Esc>A;<Esc>
 " inoremap (; ();<Left><Left>
 nnoremap <silent> <C-H> :call Toggle_cursor() <CR>
 nnoremap <C-p> :call pdv#DocumentCurrentLine()<CR>
-nnoremap <silent> <C-]> :call phpactor#GotoDefinition()<CR>
 
 nnoremap <SPACE> <Nop>
 vnoremap <SPACE> <Nop>
