@@ -41,6 +41,7 @@ function dockbash()
     docker exec -t -i "$1" bash
 }
 
+export HOMEBREW_NO_ANALYTICS=1
 export PS1="\[\e[34;50m\]\h:\W \u\$\[\e[30;50m\] "
 
 export PATH="$(brew --prefix php)/bin:$PATH"
